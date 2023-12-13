@@ -35,8 +35,7 @@ def initialization():
 
         # Main WSGI Application
         target._nr_instrumented = True
-        nr_app = newrelic.agent.WSGIApplicationWrapper(target.app)
-        target.app = nr_app
+        target.app = newrelic.agent.WSGIApplicationWrapper(target.app)
 
         # Workers new WSGI Application
         odoo.http.Application = newrelic.agent.WSGIApplicationWrapper(odoo.http.Application)
@@ -44,7 +43,7 @@ def initialization():
         try:
             _logger.info('attaching to bus controller')
             import odoo.addons.bus.controllers.main
-            newrelic.agent.wrap_background_task(odoo.addons.bus.websocket, 'Websocket._dispatch_bus_notifications', application=nr_app)
+            newrelic.agent.wrap_background_task(odoo.addons.bus.websocket, 'Websocket._dispatch_bus_notifications')
             _logger.info('finished attaching to bus controller')
         except Exception as e:
             _logger.exception(e)
