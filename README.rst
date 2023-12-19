@@ -41,6 +41,8 @@ Set environment variable **NEW_RELIC_ODOO_TRACE** to control what functions the 
 
 5) Restart your odoo process and install the 'newrelic' module in Odoo Apps. (You may need to restart your odoo server again and look at the logs for information about a misconfiguration or missing modules.)
 
+Patching in newrelic's WSGI wrapper can fail if you are using other WSGI wrappers as well (`sentry` from OCA/server-tools is a known case) in combination with a threaded setup (no workers, as on Odoo.sh). In that case, try adding the module as a server wide module.
+
 ========
 Features
 ========

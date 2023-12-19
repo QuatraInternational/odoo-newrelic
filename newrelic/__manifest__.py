@@ -11,7 +11,8 @@
     ],
     'external_dependencies': {
         "python": ["newrelic"],
-    },    
+    },
     "installable": True,
     "application": False,
+    "post_load": "post_load",
 }
